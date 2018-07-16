@@ -3,12 +3,13 @@ package cn.dw.oa.utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 // 完成数据库的连接操作,负责创建和销毁资源
 public class JdbcUtils {
 
 	public static void main(String[] args) {
-		JdbcUtils jdbcUtils=new JdbcUtils();
+		JdbcUtils jdbcUtils = new JdbcUtils();
 		System.out.println(jdbcUtils.getConnection());
 		System.out.println(jdbcUtils.getConnection());
 		System.out.println(jdbcUtils.getConnection());
@@ -36,14 +37,23 @@ public class JdbcUtils {
 	}
 
 	// 编写一个方法,关闭Connection对象
-	public void close(Connection conn) {
+	public void close(Connection conn, Statement pre) {
 		try {
-			if (conn != null && !conn.isClosed()) {
-				conn.close();
+			if (pre != null && !pre.isClosed()) {
+				pre.close();
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
+		} finally {
+			try {
+				if (conn != null && !conn.isClosed()) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			}
 		}
+
 	}
 
 }
