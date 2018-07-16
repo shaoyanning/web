@@ -1,0 +1,28 @@
+day01_AM: Java体系结构、项目模块介绍
+
+Java 体系结构:
+
+         Web Project
+
+     Spring Boot   Docker
+
+   Spring  SpringMvc  Mybatis
+
+  Servlet  Filter  Listener
+
+          Tomcat
+
+      JDK > JRE >  JVM
+
+     window     linux
+
+
+项目体系结构(层与层之间不能够跨层依赖,不能相互依赖)
+
+     显示层(MVC)
+
+    业务逻辑层
+    
+     持久层   
+ 
+    DB
