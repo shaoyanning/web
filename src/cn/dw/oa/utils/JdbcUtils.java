@@ -2,6 +2,7 @@ package cn.dw.oa.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -36,21 +37,33 @@ public class JdbcUtils {
 		}
 	}
 
-	// 编写一个方法,关闭Connection对象
 	public void close(Connection conn, Statement pre) {
+		this.close(conn, pre, null);
+	}
+
+	// 编写一个方法,关闭Connection对象
+	public void close(Connection conn, Statement pre, ResultSet rs) {
 		try {
-			if (pre != null && !pre.isClosed()) {
-				pre.close();
+			if (rs != null && !rs.isClosed()) {
+				rs.close();
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
 			try {
-				if (conn != null && !conn.isClosed()) {
-					conn.close();
+				if (pre != null && !pre.isClosed()) {
+					pre.close();
 				}
 			} catch (SQLException e) {
 				throw new RuntimeException(e);
+			} finally {
+				try {
+					if (conn != null && !conn.isClosed()) {
+						conn.close();
+					}
+				} catch (SQLException e) {
+					throw new RuntimeException(e);
+				}
 			}
 		}
 
