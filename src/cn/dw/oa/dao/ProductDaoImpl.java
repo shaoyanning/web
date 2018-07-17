@@ -12,7 +12,7 @@ import cn.dw.oa.utils.JdbcUtils;
 
 // 完成基本product表的相关操作
 public class ProductDaoImpl extends BaseDaoImpl<Product> {
-
+	// main不应该写测试代码,因为代码有侵入性、不能保留测试痕迹
 	public static void main(String[] args) {
 		ProductDaoImpl daoImpl = new ProductDaoImpl();
 		Product product = new Product();
