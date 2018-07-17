@@ -5,7 +5,7 @@ import java.util.Date;
 // 实体类，模型类，POJO 对应的是数据的某张表
 public class Product {
 
-	private Integer id;
+	private Integer id;  // 可以存储null
 	private String name;
 	private Double price;
 	private String remark;
