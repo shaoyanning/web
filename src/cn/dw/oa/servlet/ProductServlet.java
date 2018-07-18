@@ -36,18 +36,10 @@ public class ProductServlet extends HttpServlet {
 		String keyword = request.getParameter("keyword");
 		// 2: 调用Service业务逻辑(Servlet自身不负责任何功能模块的实现)
 		List<Product> proList = productService.queryByName(keyword);
-		System.out.println(proList.size());
-		// java web中有三种常见的数据存储空间
-		request.setAttribute("req", "request");
 		HttpSession session = request.getSession();
-		session.setAttribute("ses", "session");
-		ServletContext application = request.getServletContext();
-		application.setAttribute("app", "application");
-		System.out.println("req:" + request + ",ses:" + session + ",app:" + application);
-		response.sendRedirect("/web/query.jsp");
+		session.setAttribute("proList",proList);
 		// 3: 跳转到下一个页面(服务器给客户端的响应)
-
-
+		response.sendRedirect("/web/query.jsp");
 	}
 
 	// doPost有两个参数: request：用来封装客户端到服务器端的请求数据
