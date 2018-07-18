@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,10 +37,17 @@ public class ProductServlet extends HttpServlet {
 		String keyword = request.getParameter("keyword");
 		// 2: 调用Service业务逻辑(Servlet自身不负责任何功能模块的实现)
 		List<Product> proList = productService.queryByName(keyword);
-		HttpSession session = request.getSession();
-		session.setAttribute("proList",proList);
+		request.setAttribute("proList", proList);
+		// 能够存放在request数据就不应该存放在session中
+//		session.setAttribute("proList",proList);
 		// 3: 跳转到下一个页面(服务器给客户端的响应)
-		response.sendRedirect("/web/query.jsp");
+//		response.sendRedirect("/web/query.jsp");
+		// java web中有两种跳转: 
+		  // 重定向: Redirect(先访问servlet,然后客户端在访问query.jsp)
+		  // 转发: forward默认已经添加工程名(只能转发到系统内部资源)
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/query.jsp");
+		// 如果 servlet与jsp页面存在数据的共享则必须使用转发而非重定向
+		dispatcher.forward(request, response);
 	}
 
 	// doPost有两个参数: request：用来封装客户端到服务器端的请求数据

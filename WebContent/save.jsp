@@ -13,6 +13,7 @@
 			name="price" /><br /> 备注:
 		<textarea name="remark" rows="5" cols="20"></textarea>
 		<button type="submit">添加商品</button>
+		<input type="hidden" name="type" value="save">
 	</form>
 </body>
 </html>
