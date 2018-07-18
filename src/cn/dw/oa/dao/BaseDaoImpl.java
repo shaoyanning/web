@@ -40,9 +40,7 @@ public abstract class BaseDaoImpl<T> {
 			rs = pre.executeQuery();
 			// 从rs中获取数据(如果有数据的话)
 			while (rs.next()) { // 最初,光标被置于第一行之前.next方法将光标移动到下一行
-				// true则说明当前行有记录
 				// this: 永远执行的当前调用的对象
-				System.out.println("this:" + this);
 				tList.add(this.getRow(rs));
 			}
 			return tList;
