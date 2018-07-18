@@ -13,20 +13,8 @@ import cn.dw.oa.utils.JdbcUtils;
 // 完成基本product表的相关操作
 public class ProductDaoImpl extends BaseDaoImpl<Product> {
 	// main不应该写测试代码,因为代码有侵入性、不能保留测试痕迹
-	public static void main(String[] args) {
-		ProductDaoImpl daoImpl = new ProductDaoImpl();
-		Product product = new Product();
-		product.setName("Iphone 10");
-		product.setPrice(6666.14);
-		product.setRemark("我是备注");
-		product.setId(4);
-		// daoImpl.update(product);
-		// daoImpl.delete(4);
-		for (Product temp : daoImpl.queryByName("")) {
-			System.out.println(temp);
-		}
-		System.out.println(daoImpl.getById(1));
-	}
+//	public static void main(String[] args) {
+//	}
 
 	public List<Product> queryByName(String keyword) {
 		String sql = "select * from product where name like ?";
