@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.mysql.jdbc.interceptors.SessionAssociationInterceptor;
+
 import cn.dw.oa.model.Product;
 import cn.dw.oa.service.ProductServiceImpl;
 
@@ -27,7 +29,7 @@ public class ProductServlet extends HttpServlet {
 	
 	private ProductServiceImpl productService=new ProductServiceImpl();
 	// web中java支持并发访问,如果是单例模式(一个对象)都需要考虑线程安全问题
-	private String keyword = null;
+//	private String keyword = null;  // 采用session存储每个用户自己的数据
 
 	public ProductServlet() {
 		super();
@@ -58,7 +60,11 @@ public class ProductServlet extends HttpServlet {
 			response.sendRedirect("/web/query.jsp");
 		}else if(type.equals("query")) {
 			// 1: 获取前端的数据 (通过前台的表单元素的名称来获取数据)
-			keyword = request.getParameter("keyword");
+			// 必须采用每个用户自身的session来存储自己的查询关键字
+			HttpSession session = request.getSession();
+			System.out.println("query" + session);
+			String keyword = request.getParameter("keyword");
+			session.setAttribute("keyword", keyword); 
 			// 2: 调用Service业务逻辑(Servlet自身不负责任何功能模块的实现)
 			List<Product> proList = productService.queryByName(keyword);
 			request.setAttribute("proList", proList);
@@ -71,7 +77,10 @@ public class ProductServlet extends HttpServlet {
 		}else if(type.equals("delete")) {
 			String id = request.getParameter("id");
 			productService.delete(Integer.parseInt(id));
-			// 获取之前的查询关键字,重新查询
+			// 获取之前的查询关键字,重新查询(自己的session中去获取查询的关键字)
+			HttpSession session = request.getSession();
+			System.out.println("delete" + session);
+			String keyword  = (String)session.getAttribute("keyword");
 			productService.queryByName(keyword);
 			List<Product> proList = productService.queryByName(keyword);
 			request.setAttribute("proList", proList);
