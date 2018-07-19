@@ -86,6 +86,23 @@ public class ProductServlet extends HttpServlet {
 			request.setAttribute("proList", proList);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/query.jsp");
 			dispatcher.forward(request, response);
+		}else if(type.equals("getById")) {
+			// 1: 获取前端的数据
+			Product product = productService.getById(Integer.parseInt(request.getParameter("id")));
+			// 2：根据id查询当前商品对象,如果有缓存则自动缓存获取(查询的对象存储在request中)
+			request.setAttribute("product", product);
+			// 3: 转发到update.jsp页面
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/update.jsp");
+			dispatcher.forward(request, response);
+		}else if(type.equals("update")) {
+			Product product = new Product();
+			// ctrl + 2 shift+alt+A ctrl + shift + F
+			product.setName(request.getParameter("name"));
+			product.setRemark(request.getParameter("remark"));
+			product.setPrice(Double.parseDouble(request.getParameter("price")));
+			product.setId(Integer.parseInt(request.getParameter("id")));
+			productService.update(product);
+			response.sendRedirect("/web/query.jsp");
 		}
 	}
 

@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>添加商品</title>
+<title>查询商品</title>
  <script type="text/javascript"></script>
  <script type="text/javascript"></script>
 </head>
@@ -35,7 +35,9 @@
 				<td>${p.price}</td>
 				<td>${p.remark }</td>
 				<td>${p.date}</td>
-				<td><a href="/web/ProductServlet?id=${p.id}&type=delete">删除</a>|ajax删除|更新</td>
+				<td><a href="/web/ProductServlet?id=${p.id}&type=delete">删除</a>
+				  |ajax删除
+				  |<a href="/web/ProductServlet?id=${p.id}&type=getById">更新</a></td>
 			</tr>
 		</c:forEach>
 	</table>
