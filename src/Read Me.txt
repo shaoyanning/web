@@ -1,6 +1,12 @@
-day01_PM: 
+day04_AM: Java乱码问题:
 
-
+    1: 如果导入的项目有乱码问题则应该项目本身的编码与workspace不匹配 (修改项目本身编码)
+    
+    2：jsp页面都有编码,此时页面编码必须与项目编码一致
+    
+    3: 如果通过db.sql插入有乱码问题,则说明数据库编码与项目编码不一致(数据库编码不能变),
+    
+              应该配置连接数据库时url地址  例如: "jdbc:mysql://localhost:3306/db1?characterEncoding=utf-8";
 
 day01_AM: Java体系结构、项目模块介绍
 

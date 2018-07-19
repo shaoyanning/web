@@ -8,7 +8,7 @@
  <script type="text/javascript"></script>
 </head>
 <body>
-	<form action="/web/ProductServlet" method="get">
+	<form action="/web/ProductServlet" method="post">
 		查询关键字:<input type="text" name="keyword" value="${sessionScope.keyword}"/>
 		<button type="submit">给我搜</button>
 		<input type="hidden" name="type" value="query">
