@@ -29,6 +29,10 @@ http://www.springframework.org/schema/lang http://www.springframework.org/schema
 		<property name="jdbcTemplate" ref="jt" />
 	</bean>
 	
+	<bean id="ps" class="cn.dw.oa.service.ProductServiceImpl">
+		<property name="productDao" ref="pd" />
+	</bean>
+	
 </beans>
 
 

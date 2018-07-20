@@ -1,7 +1,5 @@
 package cn.dw.oa.dao;
 
-import static org.junit.Assert.*;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -9,10 +7,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.dw.oa.model.Product;
+import cn.dw.oa.service.ProductService;
 
 public class ProductDaoImplTest {
 	// 面向接口编程
-	private static ProductDao daoImpl = null;
+	private static ProductService productService = null;
 	private static ApplicationContext context = null;
 
 	@BeforeClass
@@ -20,25 +19,25 @@ public class ProductDaoImplTest {
 		System.out.println("测试方法之前会执行,一般用来初始化资源......");
 		context = new ClassPathXmlApplicationContext("spring-bean.xml");
 //		daoImpl = (ProductDaoImpl)context.getBean("pd");
-		daoImpl = context.getBean("pd",ProductDao.class);
+		productService = context.getBean("ps",ProductService.class);
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		System.out.println("测试方法之后执行,一般用来销毁资源......");
-		daoImpl = null;
+		productService = null;
 	}
 
 	@Test
 	public void testQueryByName() {
-		for (Product temp : daoImpl.queryByName("")) {
+		for (Product temp : productService.queryByName("")) {
 			System.out.println(temp);
 		}
 	}
 
 	@Test
 	public void testGetById() {
-		System.out.println(daoImpl.getById(1));
+		System.out.println(productService.getById(1));
 	}
 
 	@Test
@@ -48,7 +47,7 @@ public class ProductDaoImplTest {
 		product.setName("Iphone 10");
 		product.setPrice(6666.14);
 		product.setRemark("我是备注");
-		daoImpl.save(product);
+		productService.save(product);
 		System.out.println("--------------------");
 	}
 
@@ -59,12 +58,12 @@ public class ProductDaoImplTest {
 		product.setPrice(6666.14);
 		product.setRemark("我是备注");
 		product.setId(2);
-		daoImpl.update(product);
+		productService.update(product);
 	}
 
 	@Test
 	public void testDelete() {
-		daoImpl.delete(4);
+		productService.delete(4);
 	}
 
 }

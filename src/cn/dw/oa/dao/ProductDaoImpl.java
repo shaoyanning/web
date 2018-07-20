@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -27,14 +28,15 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public List<Product> queryByName(String keyword) {
 		String sql = "select * from product where name like ?";
-		// return super.query(sql, "%" + keyword + "%");
-		return jdbcTemplate.query(sql, (rs, num) -> {
-			Product product = new Product();
-			product.setId(rs.getInt("id"));
-			product.setName(rs.getString("name"));
-			product.setPrice(rs.getDouble("price"));
-			return product;
-		}, "%" + keyword + "%");
+//		// return super.query(sql, "%" + keyword + "%");
+//		return jdbcTemplate.query(sql, (rs, num) -> {
+//			Product product = new Product();
+//			product.setId(rs.getInt("id"));
+//			product.setName(rs.getString("name"));
+//			product.setPrice(rs.getDouble("price"));
+//			return product;
+//		}, "%" + keyword + "%");
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Product>(Product.class), "%" + keyword + "%");
 	}
 
 	/*
@@ -45,19 +47,6 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public Product getById(int id) {
 		String sql = "select * from product where id = ?";
-		// List<Product> proList = super.query(sql, id);
-		// return proList.size() == 0 ? null : proList.get(0);
-		// return jdbcTemplate.queryForObject(sql, new RowMapper<Product>() {
-		// @Override
-		// public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
-		// Product product = new Product();
-		// product.setId(rs.getInt("id"));
-		// product.setName(rs.getString("name"));
-		// return product;
-		// }
-		//
-		// }, id);
-
 		return jdbcTemplate.queryForObject(sql, (rs, rowNum) -> {
 			Product product = new Product();
 			product.setId(rs.getInt("id"));

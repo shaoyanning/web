@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import com.mysql.jdbc.interceptors.SessionAssociationInterceptor;
 
 import cn.dw.oa.model.Product;
+import cn.dw.oa.service.ProductService;
 import cn.dw.oa.service.ProductServiceImpl;
 
 /**
@@ -27,7 +28,7 @@ public class ProductServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private ProductServiceImpl productService=new ProductServiceImpl();
+	private ProductService productService=new ProductServiceImpl();
 	// web中java支持并发访问,如果是单例模式(一个对象)都需要考虑线程安全问题
 //	private String keyword = null;  // 采用session存储每个用户自己的数据
 
