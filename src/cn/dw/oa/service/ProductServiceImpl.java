@@ -2,13 +2,14 @@ package cn.dw.oa.service;
 
 import java.util.List;
 
+import cn.dw.oa.dao.ProductDao;
 import cn.dw.oa.dao.ProductDaoImpl;
 import cn.dw.oa.model.Product;
 
 // 此类是业务逻辑类,主要完成项目业务逻辑,并且调用数据访问层
 public class ProductServiceImpl {
 	// bootstrap
-	private ProductDaoImpl productDao = new  ProductDaoImpl();
+	private ProductDao productDao = new ProductDaoImpl();
 	
 	public List<Product> queryByName(String keyword) {
 		return productDao.queryByName(keyword);

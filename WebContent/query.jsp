@@ -31,6 +31,7 @@
 			 <!-- 循环一行 -->
 			 <tr>
 				<td>${p.id}</td>
+				<!-- 调用getName -->
 				<td>${p.name}</td>
 				<td>${p.price}</td>
 				<td>${p.remark }</td>

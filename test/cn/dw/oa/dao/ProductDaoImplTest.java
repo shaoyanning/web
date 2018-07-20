@@ -5,17 +5,22 @@ import static org.junit.Assert.*;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.dw.oa.model.Product;
 
 public class ProductDaoImplTest {
-	
-	private static ProductDaoImpl daoImpl = null;
+	// 面向接口编程
+	private static ProductDao daoImpl = null;
+	private static ApplicationContext context = null;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		System.out.println("测试方法之前会执行,一般用来初始化资源......");
-		daoImpl =new ProductDaoImpl();
+		context = new ClassPathXmlApplicationContext("spring-bean.xml");
+//		daoImpl = (ProductDaoImpl)context.getBean("pd");
+		daoImpl = context.getBean("pd",ProductDao.class);
 	}
 
 	@AfterClass
@@ -33,13 +38,7 @@ public class ProductDaoImplTest {
 
 	@Test
 	public void testGetById() {
-//		System.out.println(daoImpl.getById(1));
-		try {
-		Integer.parseInt("xxx");
-		}catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
+		System.out.println(daoImpl.getById(1));
 	}
 
 	@Test
@@ -50,6 +49,7 @@ public class ProductDaoImplTest {
 		product.setPrice(6666.14);
 		product.setRemark("我是备注");
 		daoImpl.save(product);
+		System.out.println("--------------------");
 	}
 
 	@Test

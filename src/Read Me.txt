@@ -1,3 +1,9 @@
+day04_PM: new对象的三个缺点: Spring框架能够解决下面问题:
+
+     1: 硬编码不灵活: new  ProductDaoImpl(); 以后修改成Oracle数据库则需要修改源码
+     2: 不能控制对象创建时间。正常应该在项目启动的时候就要创建对象
+     3: 不能控制对象的创建数量： service dao jdbcutils都应该是单例模式(要注意线程安全问题)
+
 day04_AM: Java乱码问题:
 
     1: 如果导入的项目有乱码问题则应该项目本身的编码与workspace不匹配 (修改项目本身编码)
@@ -7,6 +13,8 @@ day04_AM: Java乱码问题:
     3: 如果通过db.sql插入有乱码问题,则说明数据库编码与项目编码不一致(数据库编码不能变),
     
               应该配置连接数据库时url地址  例如: "jdbc:mysql://localhost:3306/db1?characterEncoding=utf-8";
+              
+    4: 如果junit测试正常(插入数据没有乱码),但是从web项目中插入有乱码,则说明需要设置request编码
 
 day01_AM: Java体系结构、项目模块介绍
 
