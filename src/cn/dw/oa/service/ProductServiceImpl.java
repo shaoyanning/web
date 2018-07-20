@@ -2,6 +2,8 @@ package cn.dw.oa.service;
 
 import java.util.List;
 
+import org.springframework.jdbc.core.JdbcTemplate;
+
 import cn.dw.oa.dao.ProductDao;
 import cn.dw.oa.dao.ProductDaoImpl;
 import cn.dw.oa.model.Product;
@@ -38,6 +40,8 @@ public class ProductServiceImpl implements ProductService {
 	public int save(Product product) {
 		int result =productDao.save(product);
 		// 有些时候一个service中可能执行多个dao操作
+//		Integer.parseInt("xxxx");
+		
 		return result;
 	}
 

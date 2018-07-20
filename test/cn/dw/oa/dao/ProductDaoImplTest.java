@@ -44,10 +44,11 @@ public class ProductDaoImplTest {
 	public void testSave() {
 		System.out.println("save.....");
 		Product product = new Product();
-		product.setName("Iphone 10");
+		product.setName("Iphone 14");
 		product.setPrice(6666.14);
 		product.setRemark("我是备注");
 		productService.save(product);
+//		Integer.parseInt("xxx");
 		System.out.println("--------------------");
 	}
 
