@@ -1,6 +1,9 @@
 package cn.dw.oa.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,8 +37,41 @@ public class ProductController {
 		productService.save(product);
 		return "redirect:/query.jsp";
 	}
+	@RequestMapping("/update")
+	public String update(Product product) {
+		productService.update(product);
+		return "redirect:/query.jsp";
+	}
 	
-	public void update(Product product) {
-		
+	@RequestMapping("/getById")
+	public String getById(Integer id) {
+		Product product = productService.getById(id);
+		request.setAttribute("product", product);
+		// 共享request数据,因此采用转发
+		return "forward:/update.jsp";
+	}
+	
+	@RequestMapping("/delete")
+	public String delete(Integer id) {
+		productService.delete(id);
+		String keyword  = (String)session.getAttribute("keyword");
+		List<Product> proList = productService.queryByName(keyword);
+		request.setAttribute("proList", proList);
+		// 共享request数据,因此采用转发
+		return "forward:/query.jsp";
+	}
+	
+	@RequestMapping("/query")
+	public String query(String keyword) {
+		session.setAttribute("keyword", keyword); 
+		List<Product> proList = productService.queryByName(keyword);
+		request.setAttribute("proList", proList);
+		return "forward:/query.jsp";
 	}
 }
+
+
+
+
+
+

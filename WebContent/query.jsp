@@ -8,10 +8,9 @@
  <script type="text/javascript"></script>
 </head>
 <body>
-	<form action="/web/ProductServlet" method="post">
+	<form action="/web/product/query.mvc" method="post">
 		查询关键字:<input type="text" name="keyword" value="${sessionScope.keyword}"/>
 		<button type="submit">给我搜</button>
-		<input type="hidden" name="type" value="query">
 	</form>
 	<!-- request,session,application都称为内置对象(不用创建(系统已经创建)直接使用) -->
 	<table width="800" border="1">
@@ -36,9 +35,9 @@
 				<td>${p.price}</td>
 				<td>${p.remark }</td>
 				<td>${p.date}</td>
-				<td><a href="/web/ProductServlet?id=${p.id}&type=delete">删除</a>
+				<td><a href="/web/product/delete.mvc?id=${p.id}">删除</a>
 				  |ajax删除
-				  |<a href="/web/ProductServlet?id=${p.id}&type=getById">更新</a></td>
+				  |<a href="/web/product/getById.mvc?id=${p.id}">更新</a></td>
 			</tr>
 		</c:forEach>
 	</table>
