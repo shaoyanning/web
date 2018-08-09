@@ -1,3 +1,10 @@
+spring MVC处理 ajax请求:
+
+    1: 页面添加jquery.js文件,并且测试jquery环境
+    2: 前端$.post()发送ajax请求,可以传递基于json的参数给后台
+    3: 后台@ResponseBody注解提示返回的是JSON格式(此处需要导入两个json的jar文件)
+    4: 前端通过回调函数,获取json格式,并且转化为jquery对象然后根据业务进行赋值
+
 Spring MVC的框架搭建流程:
 
    1: 添加jar包,与spring-mvc.xml配置文件

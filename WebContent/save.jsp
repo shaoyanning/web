@@ -3,6 +3,18 @@
 <html>
 <head>
 <title>添加商品</title>
+	<script type="text/javascript" src="/web/js/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$.post('/web/category/ajax.mvc',{name:'admin',pass:'******'},function(result){
+				console.info(result);  // 返回json格式,需要化为jquery对象才可以使用jquery的属性和方法
+				$(result).each(function(){
+					$('#sel').append("<option value=" + this.id +">" + this.name + "</option>")
+				})
+				
+			});
+		})
+	</script>
 </head>
 <body>
 	<!-- 无法建立到 localhost:8080 服务器的连接:Tomcat并没有启动，或者启动成功但是端口不对 
@@ -12,6 +24,9 @@
 		商品名:<input type="text" name="name" /><br /> 价格:<input type="text"
 			name="price" /><br /> 备注:
 		<textarea name="remark" rows="5" cols="20"></textarea>
+		<select id="sel">
+			<option value="0">---请选择----</option>
+		</select>
 		<button type="submit">添加商品</button>
 	</form>
 </body>
