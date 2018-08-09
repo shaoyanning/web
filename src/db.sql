@@ -5,7 +5,7 @@ drop table if exists product;
 
 create table product
 (
-   _id                  int not null auto_increment,
+   id                  int not null auto_increment,
    name                varchar(20),
    price               decimal(8,2),
    remark              longtext,

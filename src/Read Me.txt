@@ -1,3 +1,33 @@
+Spring MVC的框架搭建流程:
+
+   1: 添加jar包,与spring-mvc.xml配置文件
+   
+   2: 在web.xml中配置后缀过滤、加载mvc配置文件(不要忘记启动的时候实例化servlet)
+   
+      <load-on-startup>1</load-on-startup>
+      
+      <url-pattern>*.mvc</url-pattern>
+      
+      <init-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:spring-mvc.xml</param-value>
+	  </init-param>
+   
+    3: 创建Controller并且在xml中进行<bean>配置(此controller通过requestMapping访问)
+    
+         3.1: 可以通过 @Resource 来按照类型注入request,session 
+         3.2: 开启注解扫描 
+         
+         <!-- 开启注解扫描 -->
+		<mvc:annotation-driven />
+		<!-- 配置要扫描的包名,支持子包 -->
+		<context:component-scan base-package="cn.dw.oa.controller" />
+		
+    4：MVC通过前缀进行转发重定向: forward:,redirect:(两种方式都不需要添加工程名)
+   
+    5：spring-bean.xml也需要在启动的时候加载.这样Controller依赖Service才不可能为空(否则在启动时创建Controller时报错)
+
+
 day04_PM: new对象的三个缺点: Spring框架能够解决下面问题:
 
      1: 硬编码不灵活: new  ProductDaoImpl(); 以后修改成Oracle数据库则需要修改源码

@@ -13,6 +13,11 @@ import cn.dw.oa.model.Product;
 
 // 完成基本product表的相关操作
 public class ProductDaoImpl implements ProductDao {
+	
+	public ProductDaoImpl() {
+		System.out.println("-----ProductDaoImpl()-----");
+	}
+	
 	// ProductDaoImpl 依赖 jdbcTemplate,如果要在配置文件注入进来则必须要有set方法
 	private JdbcTemplate jdbcTemplate;
 
