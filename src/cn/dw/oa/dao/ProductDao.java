@@ -2,24 +2,20 @@ package cn.dw.oa.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import cn.dw.oa.model.Product;
 
 public interface ProductDao {
 
-	List<Product> queryByName(String keyword);
+	public List<Product> queryByName(@Param("keyword") String name, @Param("start") int start, @Param("size") int size);
 
-	Product getById(int id);
+	public Product getById(int id);
 
-	int save(Product product);
+	public int save(Product product);
 
-	int update(Product product);
+	public int update(Product product);
 
-	int delete(int id);
-	// 默认方法: 接口支持方法实现
-	default public void show() {
-		System.out.println("show()......");
-	}
-	
-	
+	public int delete(int id);
 
 }

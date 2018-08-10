@@ -23,25 +23,9 @@ http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
 		<property name="user" value="root" />
 		<property name="password" value="123456" />
 	</bean>
-	<!-- JdbcTemplate是spring提供访问数据的解决方案,因此它必须依赖dataSouce
-	    BaseDaoImpl 依赖 JdbcUtils
-	    JdbcTemplate 依赖 DataSource
-	     ProductDaoImpl 依赖 jdbcTemplate
-	 -->
-	 <!-- 在spring中每条sql语句都是独立的事务(参照JDBC事务) -->
-	<bean id="jt" class="org.springframework.jdbc.core.JdbcTemplate">
-		<!-- dataSource 对应是源码的setDataSouce方法, ref="ds" 对应的是上面的id -->
-		<property name="dataSource" ref="ds" />
-	</bean>
-	<!-- 如果在junit中测试jdbc操作成功则说明当前配置都是有效 -->
-	<!-- IOC中如果想灵活更改配置,应该遵循面向接口编程 -->
-	<bean id="pd" class="cn.dw.oa.dao.ProductDaoImpl">
-	    <!-- name="jdbcTemplate" 代码中setJdbcTemplate -->
-		<property name="jdbcTemplate" ref="jt" />
-	</bean>
-	
+
 	<bean id="ps" class="cn.dw.oa.service.ProductServiceImpl">
-		<property name="productDao" ref="pd" />
+		<property name="productDao" ref="abc" />
 	</bean>
 	
 	<!-- spring提供了声明式事务(在xml中配置而不需要硬编码) -->
@@ -74,6 +58,20 @@ http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
 		 <aop:pointcut expression="execution(* cn.dw.oa.service.*.*(..))" id="pt"/>
 		 <aop:advisor advice-ref="ad" pointcut-ref="pt" />
 	</aop:config>
+	
+	<!-- spring + mybatis整合的配置 -->
+	<bean id="ssf" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:mybatis.cfg.xml" />
+		<!-- 因为要使用spring的数据库源-->
+		<property name="dataSource" ref="ds" />
+	</bean>
+	<!-- 可以根据接口 + Mapper映射文件动态生成一个ProductDaoImpl类  -->
+	<bean id="abc" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	    <!-- 有了sqlSessionFactory才可以获取sqlSession -->
+		<property name="sqlSessionFactory" ref="ssf" />
+		<!-- 原理是proxy动态代理,根据接口+Xml文件在运行时动态生成一个实现类 -->
+		<property name="mapperInterface" value="cn.dw.oa.dao.ProductDao" />
+	</bean>
 	
 	
 	

@@ -37,14 +37,14 @@ public class ProductDaoImplTest {
 
 	@Test
 	public void testGetById() {
-		System.out.println(productService.getById(1));
+		System.out.println(productService.getById(8));
 	}
 
 	@Test
 	public void testSave() {
 		System.out.println("save.....");
 		Product product = new Product();
-		product.setName("Iphone 14");
+		product.setName("Iphone 16");
 		product.setPrice(6666.14);
 		product.setRemark("我是备注");
 		productService.save(product);

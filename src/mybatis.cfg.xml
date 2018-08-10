@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- xml有两种: 合法XML 有效XML(xsd,dtd) -->
+<configuration>
+    
+
+	<typeAliases>
+		<!-- 自定义的别名 
+		<typeAlias type="cn.dw.oa.model.Product" alias="product" />
+		-->		
+		<!-- 前提是所有的model应该在同一个包 ,默认的别名就是类简单名称,且第一个字母小写-->
+		<package name="cn.dw.oa.model"/>
+	</typeAliases>
+
+	<!-- 加载操作数据库的映射文件,后面会采用包自动扫描 -->
+	<mappers>
+	    <!--  
+		<mapper resource="cn/dw/oa/dao/ProductMapper.xml" />
+	    -->
+	    <!-- mapper映射文件名称,必须与接口名相同,才可以扫描成功 -->
+	    
+	</mappers>
+
+
+
+</configuration>
