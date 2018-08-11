@@ -1,3 +1,4 @@
+
 spring MVC处理 ajax请求:
 
     1: 页面添加jquery.js文件,并且测试jquery环境

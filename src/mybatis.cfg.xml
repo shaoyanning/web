@@ -4,8 +4,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <!-- xml有两种: 合法XML 有效XML(xsd,dtd) -->
 <configuration>
-    
-
 	<typeAliases>
 		<!-- 自定义的别名 
 		<typeAlias type="cn.dw.oa.model.Product" alias="product" />

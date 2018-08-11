@@ -1,84 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:lang="http://www.springframework.org/schema/lang"
-       xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:aop="http://www.springframework.org/schema/aop"
-       xsi:schemaLocation="
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:lang="http://www.springframework.org/schema/lang"
+	xsi:schemaLocation="
 http://www.springframework.org/schema/beans 
 http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
 http://www.springframework.org/schema/lang 
 http://www.springframework.org/schema/lang/spring-lang-4.0.xsd 
-http://www.springframework.org/schema/tx 
-http://www.springframework.org/schema/tx/spring-tx-4.0.xsd 
-http://www.springframework.org/schema/aop 
-http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
 ">
-	<!-- Xml有两种: 合法的XML，有效的XML(首先符合语法,而且通过xsd验证) -->
-	<!-- 框架已经实现常见的功能,只需要把必须属性通过set注入即可 -->
-	<!-- java为了提高效率connection通常采用连接池(C3P0) 取代JdbcUtils -->
-	<bean id="ds" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-		<property name="driverClass" value="com.mysql.jdbc.Driver" />
-		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/demo?characterEncoding=UTF-8" />
-		<property name="user" value="root" />
-		<property name="password" value="123456" />
-	</bean>
 
 	<bean id="ps" class="cn.dw.oa.service.ProductServiceImpl">
-		<property name="productDao" ref="abc" />
+		<property name="productDao" ref="productDao" />
 	</bean>
-	
-	<!-- spring提供了声明式事务(在xml中配置而不需要硬编码) -->
-	<bean id="tm" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<!-- 事务来自数据库的连接Connection,而目前DataSouce负责Connection管理 -->
-		<property name="dataSource" ref="ds" />
-	</bean>
-	
-	<!-- aop是spring高级功能,默认在xml中是没有导入标签库,因此需要手动导入 -->
-	<!-- advice: 通知,运行时动态切入内容(事务) -->
-	<tx:advice transaction-manager="tm" id="ad">
-		<tx:attributes>
-		    <!-- save开头的方法,会动态切入事务 
-		       REQUIRED: 如果当前方法没有事务,则必须创建一个新事务
-		    -->
-			<tx:method name="save*" propagation="REQUIRED" />
-			<tx:method name="updae*" propagation="REQUIRED" />
-			<tx:method name="delete*" propagation="REQUIRED" />
-		</tx:attributes>
-	</tx:advice>
-	
-	<!-- 上面的tx配置仅仅指定了要向哪些方法切入事务.但是并没有指定向哪个层(绝对是Service层) -->
-	<aop:config>
-	     <!--pointcut 配置切面表达式: 
-	         execution(* cn.dw.oa.service.ProductServiceImpl.*(..))
-	            第一个*代表当前方法有无返回值都可
-	       cn.dw.oa.service.*.*: 切入指定包的类的所有方法     
-	       (..): 有无参数即可
-	      -->
-		 <aop:pointcut expression="execution(* cn.dw.oa.service.*.*(..))" id="pt"/>
-		 <aop:advisor advice-ref="ad" pointcut-ref="pt" />
-	</aop:config>
-	
-	<!-- spring + mybatis整合的配置 -->
-	<bean id="ssf" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="configLocation" value="classpath:mybatis.cfg.xml" />
-		<!-- 因为要使用spring的数据库源-->
-		<property name="dataSource" ref="ds" />
-	</bean>
-	<!-- 可以根据接口 + Mapper映射文件动态生成一个ProductDaoImpl类  -->
-	<bean id="abc" class="org.mybatis.spring.mapper.MapperFactoryBean">
-	    <!-- 有了sqlSessionFactory才可以获取sqlSession -->
+
+	<bean id="productDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="sqlSessionFactory" ref="ssf" />
-		<!-- 原理是proxy动态代理,根据接口+Xml文件在运行时动态生成一个实现类 -->
 		<property name="mapperInterface" value="cn.dw.oa.dao.ProductDao" />
 	</bean>
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
 </beans>
 
 

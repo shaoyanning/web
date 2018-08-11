@@ -17,7 +17,7 @@ public class ProductDaoImplTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		System.out.println("测试方法之前会执行,一般用来初始化资源......");
-		context = new ClassPathXmlApplicationContext("spring-bean.xml");
+		context = new ClassPathXmlApplicationContext("spring-bean.xml","spring-public.xml");
 //		daoImpl = (ProductDaoImpl)context.getBean("pd");
 		productService = context.getBean("ps",ProductService.class);
 	}

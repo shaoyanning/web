@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:lang="http://www.springframework.org/schema/lang"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+http://www.springframework.org/schema/lang 
+http://www.springframework.org/schema/lang/spring-lang-4.0.xsd 
+http://www.springframework.org/schema/tx 
+http://www.springframework.org/schema/tx/spring-tx-4.0.xsd 
+http://www.springframework.org/schema/aop 
+http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+">
+    <!-- 根据情况修改数据库连接配置 -->
+	<bean id="ds" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/demo?characterEncoding=UTF-8" />
+		<property name="user" value="root" />
+		<property name="password" value="123456" />
+	</bean>
+
+	
+	<!-- service方法命名规范,根据项目包路径修改切面表达式 -->
+	<bean id="tm" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="ds" />
+	</bean>
+	
+	<tx:advice transaction-manager="tm" id="ad">
+		<tx:attributes>
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="updae*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="query*" propagation="SUPPORTS"/>
+			<tx:method name="get*" propagation="SUPPORTS"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<aop:config>
+		 <aop:pointcut expression="execution(* cn.dw.oa.service.*.*(..))" id="pt"/>
+		 <aop:advisor advice-ref="ad" pointcut-ref="pt" />
+	</aop:config>
+	
+	<!-- mybatis.cfg.xml必须存放到src目录,且名称相同 -->
+	<bean id="ssf" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:mybatis.cfg.xml" />
+		<property name="dataSource" ref="ds" />
+	</bean>
+
+</beans>
+
+
+
+
+
