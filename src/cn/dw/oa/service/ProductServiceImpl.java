@@ -2,24 +2,25 @@ package cn.dw.oa.service;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import cn.dw.oa.dao.ProductDao;
 import cn.dw.oa.model.Product;
 
 // 此类是业务逻辑类,主要完成项目业务逻辑,并且调用数据访问层
+@Service("ps")  // 注解中,只有value属性可以省略
 public class ProductServiceImpl implements ProductService {
 	
 	public ProductServiceImpl() {
 		System.out.println("ProductServiceImpl()...........");
 	}
 	
-	// bootstrap
+	@Resource  // 配置name则必须按照名称注入,如果没有配置name则默认按照属性名注入,如果属性没有找到则按照类型注入
 	private ProductDao productDao = null;
-
-	public void setProductDao(ProductDao productDao) {
-		this.productDao = productDao;
-	}
 
 	/*
 	 * (non-Javadoc)

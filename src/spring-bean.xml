@@ -8,36 +8,12 @@ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
 http://www.springframework.org/schema/lang 
 http://www.springframework.org/schema/lang/spring-lang-4.0.xsd 
 ">
-
-	<bean id="ps" class="cn.dw.oa.service.ProductServiceImpl">
-		<property name="productDao" ref="productDao" />
-	</bean>
 	
-	<bean id="cs" class="cn.dw.oa.service.CategoryServiceImpl">
-		<property name="categoryDao" ref="categoryDao" />
-	</bean>
-	<!-- 
-		<bean id="productDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
-			<property name="sqlSessionFactory" ref="ssf" />
-			<property name="mapperInterface" value="cn.dw.oa.dao.ProductDao" />
-		</bean>
-		
-		<bean id="categoryDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
-			<property name="sqlSessionFactory" ref="ssf" />
-			<property name="mapperInterface" value="cn.dw.oa.dao.CategoryDao" />
-		</bean>
-	 -->
 	 <!-- 通过包扫描的方式,先找到接口,然后通过接口名称找相应Mapper.xml文件,主配置文件可以删除mappers标签 -->
 	 <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 	 	<property name="sqlSessionFactory" ref="ssf" />
 	 	<property name="basePackage" value="cn.dw.oa.dao" />
 	 </bean>
-
-
-
-
-
-
 
 </beans>
 

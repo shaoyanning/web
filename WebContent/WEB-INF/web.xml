@@ -35,16 +35,6 @@
 		<url-pattern>*.mvc</url-pattern>
 	</servlet-mapping>
 	
-	<filter>
-	    <filter-name>EnCodingFilter</filter-name>
-		<filter-class>cn.dw.oa.filter.EnCodingFilter</filter-class>
-	</filter>
-	
-	<filter-mapping>
-		<filter-name>EnCodingFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:spring-*.xml</param-value>
@@ -55,8 +45,5 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	
-	<listener>
-		<listener-class>cn.dw.oa.listener.InitDataListener</listener-class>
-	</listener>
-	
+
 </web-app>

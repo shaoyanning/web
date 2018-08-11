@@ -11,7 +11,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
 // 项目默认是不能识别过滤器,除非通过注解配置
-// @WebFilter(urlPatterns="/*")  // 过滤所有请求
+@WebFilter(urlPatterns="/*")  // 过滤所有请求
 public class EnCodingFilter implements Filter {
 	
 	public EnCodingFilter() {

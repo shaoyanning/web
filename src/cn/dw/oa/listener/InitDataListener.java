@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -15,6 +16,7 @@ import cn.dw.oa.model.Category;
 import cn.dw.oa.service.CategoryService;
 
 // ServletContextListener:监听器,它在项目启动的时候创建,项目关闭的时候销毁(Listener > Filter > servlet)
+@WebListener
 public class InitDataListener implements ServletContextListener {
 	
 	private CategoryService categoryService;

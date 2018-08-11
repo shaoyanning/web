@@ -12,15 +12,9 @@ http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context-4.0.xsd
 ">
    <!-- controller 依赖 service, 而且spring-bean.xml也需要在启动的时候加载 -->
-   <bean class="cn.dw.oa.controller.ProductController">
-   		<property name="productService" ref="ps" />
-   </bean>
-   
-   <bean class="cn.dw.oa.controller.CategoryController">
-   		<property name="categoryService" ref="cs" />
-   </bean>
+   <!-- 此注解如果不加载则@ResponseBody无效 -->
    <mvc:annotation-driven />
-   <context:component-scan base-package="cn.dw.oa.." />
+   <context:component-scan base-package="cn.dw.oa.controller" />
 </beans>
 
 

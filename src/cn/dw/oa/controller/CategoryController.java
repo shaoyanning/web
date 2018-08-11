@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -20,6 +21,7 @@ import cn.dw.oa.service.ProductService;
 
 // 取代了ProductServlet, ProductController需要依赖注入: ProductService
 @RequestMapping("/category")   // 类似: @WebServlet
+@Controller
 public class CategoryController extends BaseController {
 	
 	@RequestMapping("/ajax")

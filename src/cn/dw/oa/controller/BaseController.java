@@ -4,23 +4,19 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.stereotype.Controller;
+
 import cn.dw.oa.service.CategoryService;
 import cn.dw.oa.service.ProductService;
 
 // 用来存储公共的代码
+@Controller
 public class BaseController {
-
+	
+	@Resource(name="ps")
 	protected ProductService productService;
-
+	@Resource(name="cs")
 	protected CategoryService categoryService;
-
-	public void setCategoryService(CategoryService categoryService) {
-		this.categoryService = categoryService;
-	}
-
-	public void setProductService(ProductService productService) {
-		this.productService = productService;
-	}
 
 	// 所有的request,session,application都可以通过注解自动按照类型注入, 需要在xml中配置注解扫描
 	@Resource

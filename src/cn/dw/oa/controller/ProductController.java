@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.dw.oa.model.Product;
@@ -17,6 +18,7 @@ import cn.dw.oa.service.ProductService;
 
 // 取代了ProductServlet, ProductController需要依赖注入: ProductService
 @RequestMapping("/product")   // 类似: @WebServlet
+@Controller
 public class ProductController extends BaseController {
 	
 	// 之前servlet通过doGet doPost,此方法需要if判断
