@@ -37,7 +37,7 @@ public class ProductDaoImplTest {
 
 	@Test
 	public void testGetById() {
-		System.out.println(productService.getById(8));
+		System.out.println(productService.getById(1));
 	}
 
 	@Test

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mybatis核心文件,用来封装优化数据库读取操作 -->
+<mapper namespace="aa.bb.cc">
+    <!-- resultMap: 自定义返回的结果类型(适合级联查询,列名和字段不匹配情况)  -->
+	<resultMap type="category" id="baseMap">
+		<!-- id标签指代是当前表的主键 -->
+		<id property="id" column="cat_id"/>
+		<result property="name" column="cat_name"/>
+	</resultMap>
+</mapper>
+

@@ -24,13 +24,7 @@ public class CategoryController extends BaseController {
 	@RequestMapping("/ajax")
 	@ResponseBody  // 需要添加相应的json包
 	public Object ajax(String name,String pass) {
-		System.out.println("name:" + name);
-		System.out.println("pass:" + pass);
-		// 此处模拟从后台获取商品类别数据
-		List<Category> cList = new ArrayList<Category>();
-		cList.add(new Category(1, "家用电器"));
-		cList.add(new Category(2, "儿童玩具"));
-		return cList;  // 会自动转化为json格式
+		return null;
 	}
 
 }
