@@ -49,7 +49,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 如果是查询集合,resultType：定义的是查询集合里面存储的类型,而非定义集合类型 -->
 	<select id="queryByName" resultType="product">
-		select * from product where name like #{keyword} limit #{start},#{size}
+		select * from product where pro_name like #{keyword} limit #{start},#{size}
 	</select>
 	
 	<!-- 

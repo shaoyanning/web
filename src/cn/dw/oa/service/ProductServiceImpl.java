@@ -23,7 +23,7 @@ public class ProductServiceImpl implements ProductService {
 	 */
 	@Override
 	public List<Product> queryByName(String keyword) {
-		int page = 2; int size = 5;
+		int page = 1; int size = 5;
 		return productDao.queryByName("%" + keyword + "%",(page-1)*size,size);
 	}
 
