@@ -49,12 +49,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="update" parameterType="product">
 		update product
 		<set>
-			<if test="name!=null"> name = #{name}, </if>
-			<if test="remark!=null"> remark = #{remark}, </if>
-			<if test="price!=null"> price = #{price},</if>
-			<if test="date!=null"> date = #{date},</if>
+			<if test="name!=null"> pro_name = #{name}, </if>
+			<if test="remark!=null"> pro_remark = #{remark}, </if>
+			<if test="price!=null"> pro_price = #{price},</if>
+			<if test="date!=null"> pro_date = #{date},</if>
+			<if test="category!=null and category.id!=null">cat_id = #{category.id}</if>
 		</set>
-		where id = #{id}
+		where pro_id = #{id}
 	</update>
 	
 	<delete id="delete" parameterType="int">

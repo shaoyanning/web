@@ -1,7 +1,7 @@
 package cn.dw.oa.model;
 
-public class Category {
 
+public class Category {
 	private Integer id;
 
 	private String name;

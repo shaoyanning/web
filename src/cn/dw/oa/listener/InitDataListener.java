@@ -30,6 +30,7 @@ public class InitDataListener implements ServletContextListener {
 		// 从application内置对象中获取spring的配置文件
 		ServletContext application = event.getServletContext();
 		System.out.println("application:" + application);
+		// WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE
 		context = WebApplicationContextUtils.getWebApplicationContext(application);
 		categoryService = context.getBean("cs",CategoryService.class);
 		List<Category> catList = categoryService.queryByName("");
