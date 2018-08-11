@@ -1,3 +1,15 @@
+新增加类别模块,如何实现ajax访问类别数据显示在前段的下拉列表框
+
+   1: 创建category model
+   
+   2： 新建CategoryDao.xml文件,并且注册到Mybatis主配置文件中并且完成类别的查询功能
+   
+   3: 新建CategoryDao接口,接口方法必须与Mapper中的id绑定.接口类全名必须是mapper.xml文件中命名空间
+   
+   4: spring中配置Dao接口+ Mapper文件生成CategoryDaoImpl
+   
+   5: 创建Service + Controller即可(需要交给配置文件实现依赖注入)
+
 
 spring MVC处理 ajax请求:
 

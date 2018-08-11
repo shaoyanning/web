@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	<resultMap type="product" id="joinCategory" extends="baseMap">
-		<association property="category" resultMap="aa.bb.cc.baseMap" />
+		<association property="category" resultMap="cn.dw.oa.dao.CategoryDao.baseMap" />
 	</resultMap>
 
 	<!-- parameterType 传入的类型,mybatis有系统别名,并且支持自定义别名 -->

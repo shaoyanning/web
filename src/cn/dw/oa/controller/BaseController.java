@@ -4,12 +4,19 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import cn.dw.oa.service.CategoryService;
 import cn.dw.oa.service.ProductService;
 
 // 用来存储公共的代码
 public class BaseController {
 
 	protected ProductService productService;
+
+	protected CategoryService categoryService;
+
+	public void setCategoryService(CategoryService categoryService) {
+		this.categoryService = categoryService;
+	}
 
 	public void setProductService(ProductService productService) {
 		this.productService = productService;
