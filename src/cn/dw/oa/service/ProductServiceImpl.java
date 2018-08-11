@@ -46,8 +46,6 @@ public class ProductServiceImpl implements ProductService {
 	public int save(Product product) {
 		int result = productDao.save(product);
 		// 有些时候一个service中可能执行多个dao操作
-		Integer.parseInt("xxxx");
-
 		return result;
 	}
 

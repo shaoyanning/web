@@ -27,10 +27,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- sql代码片段 -->
 	<sql id="param">
 	    <trim suffixOverrides=",">
-		    <if test="name!=null">name,</if>
-		    <if test="price!=null">price,</if>
-		    <if test="remark!=null">remark,</if>
-		    <if test="date!=null">date,</if>
+		    <if test="name!=null">pro_name,</if>
+		    <if test="price!=null">pro_price,</if>
+		    <if test="remark!=null">pro_remark,</if>
+		    <if test="date!=null">pro_date,</if>
+		    <if test="category!=null and category.id!=null">cat_id,</if>
 	    </trim>
 	</sql>
 	
@@ -40,6 +41,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    <if test="price!=null">#{price},</if>
 		    <if test="remark!=null">#{remark},</if>
 		    <if test="date!=null">#{date},</if>
+		    <if test="category!=null and category.id!=null">#{category.id},</if>
 	    </trim>
 	</sql>
 	
@@ -54,8 +56,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</set>
 		where id = #{id}
 	</update>
+	
 	<delete id="delete" parameterType="int">
-		delete from product where id = #{id}
+		delete from product where pro_id = #{id}
 	</delete>
 	<select id="getById" parameterType="int" resultMap="baseMap">
 		select * from product where pro_id = #{id}

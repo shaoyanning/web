@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import cn.dw.oa.model.Category;
 import cn.dw.oa.model.Product;
 import cn.dw.oa.service.ProductService;
 
@@ -47,8 +48,10 @@ public class ProductDaoImplTest {
 		product.setName("Iphone 16");
 		product.setPrice(6666.14);
 		product.setRemark("我是备注");
+		Category category = new Category();
+		category.setId(2);
+		product.setCategory(category);
 		productService.save(product);
-//		Integer.parseInt("xxx");
 		System.out.println("--------------------");
 	}
 
@@ -64,7 +67,7 @@ public class ProductDaoImplTest {
 
 	@Test
 	public void testDelete() {
-		productService.delete(4);
+		productService.delete(1);
 	}
 
 }
