@@ -11,7 +11,6 @@
 				$(result).each(function(){
 					$('#sel').append("<option value=" + this.id +">" + this.name + "</option>")
 				})
-				
 			});
 		})
 	</script>

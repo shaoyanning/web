@@ -21,7 +21,7 @@
 		<!-- 可以自定义配置mvc的加载路径 -->
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:spring-*.xml</param-value>
+			<param-value>classpath:mvc-bean.xml</param-value>
 		</init-param>
 		<!-- servlet默认是第一次被访问的时候实例化,且常驻内存(单例模式) -->
 		<!-- load-on-startup: 在项目启动的时候实例化,而且默认加载: /WEB-INF/DispatcherServlet-servlet.xml -->
@@ -34,4 +34,29 @@
 		<!-- 地址过滤有两种: /abc/aaa 目录过滤, 另一种后缀过滤: *.abc -->
 		<url-pattern>*.mvc</url-pattern>
 	</servlet-mapping>
+	
+	<filter>
+	    <filter-name>EnCodingFilter</filter-name>
+		<filter-class>cn.dw.oa.filter.EnCodingFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>EnCodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:spring-*.xml</param-value>
+	</context-param>	
+	
+	<listener>
+	    <!-- 完成了spring配置文件的加载,并且存储到application内置对象中,此对象在项目中只有一份 -->
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<listener>
+		<listener-class>cn.dw.oa.listener.InitDataListener</listener-class>
+	</listener>
+	
 </web-app>

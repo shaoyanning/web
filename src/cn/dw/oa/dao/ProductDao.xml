@@ -60,8 +60,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="delete" parameterType="int">
 		delete from product where pro_id = #{id}
 	</delete>
-	<select id="getById" parameterType="int" resultMap="baseMap">
-		select * from product where pro_id = #{id}
+	<select id="getById" parameterType="int" resultMap="joinCategory">
+		select * from product p join category c on p.cat_id = c.cat_id where pro_id = #{id}
 	</select>
 	<!-- 如果是查询集合,resultType：定义的是查询集合里面存储的类型,而非定义集合类型 -->
 	<select id="queryByName" resultMap="joinCategory">

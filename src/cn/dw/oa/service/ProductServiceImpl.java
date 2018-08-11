@@ -9,6 +9,11 @@ import cn.dw.oa.model.Product;
 
 // 此类是业务逻辑类,主要完成项目业务逻辑,并且调用数据访问层
 public class ProductServiceImpl implements ProductService {
+	
+	public ProductServiceImpl() {
+		System.out.println("ProductServiceImpl()...........");
+	}
+	
 	// bootstrap
 	private ProductDao productDao = null;
 

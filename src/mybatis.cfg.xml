@@ -12,14 +12,12 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<package name="cn.dw.oa.model"/>
 	</typeAliases>
 
-	<!-- 加载操作数据库的映射文件,后面会采用包自动扫描 -->
+	<!-- 加载操作数据库的映射文件,后面会采用包自动扫描
 	<mappers>
-	    <!-- mapper映射文件名称,必须与接口名相同,才可以扫描成功 -->
 		<mapper resource="cn/dw/oa/dao/CategoryDao.xml" />
 		<mapper resource="cn/dw/oa/dao/ProductDao.xml" />
-	    
 	</mappers>
-
+ 	-->
 
 
 </configuration>
