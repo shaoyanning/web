@@ -11,14 +11,23 @@ public class Product {
 	private Double price;
 	private String remark;
 	private Date date;
+	private String img;
 	private Category category;  // cat_id 依赖就是另外一张表的主键,而知道主键就等于知道对应记录
 	
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + ", price=" + price + ", remark=" + remark + ", date=" + date
-				+ ", category=" + category + "]";
+				+ ", img=" + img + ", category=" + category + "]";
 	}
-	
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
 	public Integer getId() {
 		return id;
 	}

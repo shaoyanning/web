@@ -12,6 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="price" column="pro_price"/>
 		<result property="remark" column="pro_remark"/>
 		<result property="date" column="pro_date"/>
+		<result property="img" column="pro_img"/>
 	</resultMap>
 	
 	<resultMap type="product" id="joinCategory" extends="baseMap">
@@ -31,6 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    <if test="price!=null">pro_price,</if>
 		    <if test="remark!=null">pro_remark,</if>
 		    <if test="date!=null">pro_date,</if>
+		    <if test="img!=null">pro_img,</if>
 		    <if test="category!=null and category.id!=null">cat_id,</if>
 	    </trim>
 	</sql>
@@ -41,6 +43,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    <if test="price!=null">#{price},</if>
 		    <if test="remark!=null">#{remark},</if>
 		    <if test="date!=null">#{date},</if>
+		    <if test="img!=null">#{img},</if>
 		    <if test="category!=null and category.id!=null">#{category.id},</if>
 	    </trim>
 	</sql>

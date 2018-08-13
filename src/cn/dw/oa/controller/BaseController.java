@@ -1,6 +1,7 @@
 package cn.dw.oa.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -23,5 +24,8 @@ public class BaseController {
 	protected HttpServletRequest request;
 	@Resource
 	protected HttpSession session;
+	@Resource
+	protected ServletContext application;
+	
 
 }

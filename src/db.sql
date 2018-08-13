@@ -17,6 +17,7 @@ create table product
    pro_name                varchar(20),
    pro_price               decimal(8,2),
    pro_remark              longtext,
+   pro_img				   varchar(200),
    pro_date                timestamp default CURRENT_TIMESTAMP,
    cat_id                  int,
    primary key (pro_id)
